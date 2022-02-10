@@ -13,11 +13,14 @@ const EmployeesProvider = (props) => {
 
   const [state, dispatch] = useReducer(employeeReducer, { employees: [] });
 
+  const memoiseGetEmployee = useCallback(
+    () => getEmployee(dispatch),
+    []
+  );
+
   useEffect(() => {
-    if (state.employees.length <= 0) {
-      getEmployee(dispatch);
-    }
-  }, [state.employees]);
+    memoiseGetEmployee();
+  }, [memoiseGetEmployee]);
 
   const handleAddChange = useCallback(
     (e) => {
