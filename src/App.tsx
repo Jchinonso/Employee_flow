@@ -1,26 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import styled from "styled-components";
+import "./App.css";
 
-function App() {
+import AddComponent from "./components/AddComponent";
+import TableComponent from "./components/TableComponent";
+
+import EmployeesProvider from "./context/EmployeesProvider";
+
+const App = (): JSX.Element => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <EmployeesProvider>
+      <Container className="App">
+        <AddComponent />
+        <MainComponent>
+          <TableComponent />
+        </MainComponent>
+      </Container>
+    </EmployeesProvider>
   );
-}
+};
+
+const Container = styled.div`
+  width: 100vw;
+  height: 100vh;
+  padding: 50px;
+`;
+
+const MainComponent = styled.div``;
 
 export default App;
